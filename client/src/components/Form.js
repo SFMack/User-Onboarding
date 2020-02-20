@@ -11,8 +11,6 @@ const RegistrationForm = ({ touched, errors, status }) => {
 		status && setUsers(status);
 	}, [status]);
 
-	console.log(users);
-
 	return (
 		<div className='form'>
 			<Form>
