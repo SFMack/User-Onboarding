@@ -56,8 +56,17 @@ const RegistrationForm = ({ touched, errors, status }) => {
 					)}
 				</label>
 
-				<button>Submit</button>
+				<button type='submit'>Submit</button>
 			</Form>
+			<div>
+				{/* {users && (
+					<ul key={users.id}>
+						<li>Name: {users.name}</li>
+						<li>Email: {users.email}</li>
+					</ul>
+				)} */}
+				{console.log(users)}
+			</div>
 		</div>
 	);
 };
