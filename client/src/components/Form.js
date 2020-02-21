@@ -56,8 +56,8 @@ const RegistrationForm = ({ touched, errors, status }) => {
 							<option value='choose' disabled>
 								Choose your Role
 							</option>
-							<option value='engineer'>Software Engineer</option>
-							<option value='designer'>UX Designer</option>
+							<option value='softwareEngineer'>Software Engineer</option>
+							<option value='uxDesigner'>UX Designer</option>
 							<option value='backend'>Backend Developer</option>
 						</Field>
 					</label>
@@ -74,12 +74,12 @@ const RegistrationForm = ({ touched, errors, status }) => {
 					<button type='submit'>Submit</button>
 				</Form>
 				<div>
-					{/* {users && (
-					<ul key={users.id}>
-						<li>Name: {users.name}</li>
-						<li>Email: {users.email}</li>
-					</ul>
-				)} */}
+					{users && (
+						<ul key={users.id}>
+							<li>Name: {users.name}</li>
+							<li>Email: {users.email}</li>
+						</ul>
+					)}
 					{console.log(users)}
 				</div>
 			</div>
@@ -91,14 +91,17 @@ export default withFormik({
 	mapPropsToValues: props => ({
 		name: props.name || '',
 		email: props.email || '',
-		password: '',
-		role: '',
+		password: props.password || '',
+		role: props.role || '',
 		termsOfService: false
 	}),
 	validationSchema: yup.object().shape({
 		name: yup.string().required('Name is required'),
 		email: yup.string().required('Email is required'),
-		password: yup.string().required('Password is required'),
+		password: yup
+			.string()
+			.min(16, 'Password must be 16 characters or longer')
+			.required('Password is required'),
 		termsOfService: yup
 			.string()
 			.required('You must read and agree to the terms of service to continue')
